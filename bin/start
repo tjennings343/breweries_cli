@@ -1,0 +1,5 @@
+#!usr/bin/env ruby
+
+require_relative '../enviroment'
+
+run_program = Cli.new.start
