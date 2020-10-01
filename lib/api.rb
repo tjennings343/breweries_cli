@@ -1,4 +1,4 @@
-#handle all API requests
+
 
 class Api
     
@@ -7,7 +7,8 @@ class Api
         uri = URI(url)
         response = Net::HTTP.get(uri)
         cities = JSON.parse(response)
-        binding.pry
-
+        cities.each do |c|    
+           Breweries.new(name: c["name"], street: c["street"], state: c["state"], website: c["website_url"], city: city)
+        end
     end
 end

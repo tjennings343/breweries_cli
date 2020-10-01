@@ -1,5 +1,4 @@
-#connect our program
-#require all gems
+
 
 require 'pry'
 require 'net/http'
