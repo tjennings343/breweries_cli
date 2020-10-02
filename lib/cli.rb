@@ -25,6 +25,7 @@ class Cli
             puts "Select number to see details, or type 'exit' to start over"
             user_inp = gets.chomp.downcase
         end
+        puts ""
         if user_inp != 'exit' 
             brewery = breweries[user_inp.to_i - 1]
             print_brewery_info(brewery)
