@@ -2,4 +2,4 @@
 
 require_relative '../enviroment'
 
-run_program = Cli.new.start
+Cli.new.start
