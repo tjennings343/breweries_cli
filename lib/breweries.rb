@@ -16,4 +16,8 @@ class Breweries
     def self.all
         @@all
     end
+
+    def self.find_city(city)
+        @@all.select {|d| d.city == city }
+    end 
 end

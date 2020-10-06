@@ -3,37 +3,37 @@
 class Cli
 
     def start
-        puts ""
-        puts "Welcome to Brewery Tour"
-        puts "Please enter your city to begin"
-        puts ""
+        puts intro
         @city = gets.chomp.downcase
         Api.fetch_cities(@city)
-        puts ""
         breweries = Breweries.all
         print_breweries(breweries)
-        puts ""
-        puts "Select number to see details, or type 'exit' to start over"
-        puts ""
+        puts list_prompt
         user_inp = gets.chomp.downcase
-        if user_inp.to_i > breweries.length
+        while user_inp != 'exit' do
+            brewery = Breweries.find_city(@city)[user_inp.to_i - 1]
+            print_brewery_info(brewery)
             puts ""
-            print_breweries(breweries)
+            puts "Type 'list' to go back to the list or type 'exit' exit"
             puts ""
-            puts "Sorry please try again"
-            puts ""
-            puts "Select number to see details, or type 'exit' to start over"
+            if user_inp == 'list'
+                print_breweries(breweries)
+                puts ""
+                puts list_prompt
+            elsif user_inp == 'search'
+                puts "type a new city to search"
+                user_inp = gets.chomp.downcase
+                Api.fetch_cities(user_inp)
+                print_breweries(breweries)
+            end
             user_inp = gets.chomp.downcase
         end
         puts ""
-        if user_inp != 'exit' 
-            brewery = breweries[user_inp.to_i - 1]
-            print_brewery_info(brewery)
-        elsif user_inp == 'exit'
-            puts "Thank you, come back soon"          
-        end
+        puts "Goodbye"
     end
 
+
+       
     def print_breweries(br)
         puts "Local breweries in #{@city.capitalize}"
         puts ""       
@@ -49,7 +49,17 @@ class Cli
         puts brew.state
         puts brew.street
         puts brew.website
+     end
 
+     def intro
+        puts ""
+        puts "Welcome to Brewery Search"
+        puts "Enter city to begin" 
+     end
+
+     def list_prompt
+        puts ""
+        puts "Select number to see details, or type 'exit' to quit"
      end
 
 end
