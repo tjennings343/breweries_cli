@@ -2,7 +2,7 @@
 
 class Api
     
-    def self.fetch_cities(city)
+    def self.fetch_breweries(city)
         url = "https://api.openbrewerydb.org/breweries?by_city=#{city}"
         uri = URI(url)
         response = Net::HTTP.get(uri)
@@ -11,6 +11,6 @@ class Api
            Breweries.new(name: c["name"], street: c["street"], state: c["state"], website: c["website_url"], city: city)
            
         end
-        # binding.pry
+         binding.pry
     end
 end
