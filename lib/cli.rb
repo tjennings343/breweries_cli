@@ -7,8 +7,18 @@ class Cli
         @city = gets.chomp.downcase
         Api.fetch_breweries(@city)
         breweries = Breweries.all
-        print_breweries(breweries)
-        puts list_prompt
+            if breweries.length > 0
+            print_breweries(breweries)
+            puts list_prompt
+            else 
+            puts ""
+            puts "Not recognized, please try again."
+            puts ""
+            @city = gets.chomp.downcase
+            Api.fetch_breweries(@city)
+            print_breweries(breweries)
+            puts list_prompt
+            end
         user_inp = gets.chomp.downcase
         while user_inp != 'exit' do
             if user_inp.to_i > 0 && user_inp.to_i <= Breweries.find_brewery_city(@city).length

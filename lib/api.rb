@@ -11,6 +11,5 @@ class Api
            Breweries.new(name: c["name"], street: c["street"], state: c["state"], website: c["website_url"], city: city)
            
         end
-         binding.pry
     end
 end
