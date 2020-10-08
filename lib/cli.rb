@@ -31,7 +31,7 @@ class Cli
                     end
                     breweries = Breweries.find_brewery_city(@city)
                     print_breweries(breweries)
-                    puts "Please select a number on the list"
+                    puts list_prompt
                 end
             else
                 puts "Please select a number on the list"
